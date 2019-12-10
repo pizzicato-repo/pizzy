@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Pizzy{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+    <!-- FavIcon -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}"/>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'users/css/signup.css' %}" />
+    <link rel="stylesheet" type="text/css" href= {% block css %} {% endblock css %} />
+    {% block head %}{% endblock %}
+    
+</head>
+
+<body id="body_base" class="container">
+    
+    <header class="row">
+            <a href="{% url 'users:index' %}"><img id="logo_pizzy" src="{% static 'img/logo_pizzy.jpg' %}" alt="PIZZY"></a>
+            <div id="titre_base">Pizzicato : le site des apprentis musiciens</div>
+    </header>
+
+    <div>
+        {% if user.is_authenticated %}
+        <navbar class="row">
+            <nav id="navbar" class="site-header sticky-top py-1 col-md-12">
+                <div id="filtre_url_navbar" class="container d-flex flex-column flex-md-row justify-content-between">
+                    <a href="{% url 'users:logout' %}" class="btn fas fa-sign-out-alt" id="logout" title="Déconnexion"></a>
+                </div>
+            </nav>
+        </navbar>
+        {% else %}
+        <div class="row">
+                <div class="col-md-12" id="bandeau_footer"></div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div>
+        {% block section %}{% endblock %}
+    </div> 
+
+    <footer>
+    </footer>
+
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'js/vue.js' %}"></script> -->
+
+</body>
+
+</html>

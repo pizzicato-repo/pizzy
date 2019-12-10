@@ -1,0 +1,17 @@
+
+/learnbox_test0/__init__.py
+/learnbox_test0/settings.py
+/learnbox_test0/local_settings.py
+/learnbox_test0/settings.py*
+
+## ab projects
+pizzy_project/rs.bat
+pizzy_project/db.sqlite3
+/.vscode
+pizzy_project/activate.bat
+
+### Django ###
+__pycache__/
+
+# Byte-compiled / optimized / DLL files
+*.py[cod]
