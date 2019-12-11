@@ -123,10 +123,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#---- Users---- 
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, 'static'),
-# )
+# ---- Users---- 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+from os.path import dirname, realpath
+ROOT_DIR = realpath(dirname(dirname(__file__))) 
+app_path = os.path.join(ROOT_DIR, 'app1','static', 'users' )
 
 LOGIN_URL = '/login/' 
 # LOGIN_REDIRECT_URL = '/dashboard/'

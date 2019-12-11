@@ -21,8 +21,8 @@ class User(AbstractBaseUser):
     confirmation_date = models.DateTimeField(null=True)
 
     class Meta:
-        verbose_name = "Utilisateur"
-        verbose_name_plural = "Utilisateurs"
+        verbose_name = "Pizzy Utilisateur"
+        verbose_name_plural = "Pizzy Utilisateurs"
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name']

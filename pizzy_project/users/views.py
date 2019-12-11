@@ -51,7 +51,11 @@ class SignUpView(SendMailMixin, CreateView):
         current_site = get_current_site(self.request)
         site_name = current_site.name
         domain = current_site.domain
-        uid = urlsafe_base64_encode(force_bytes(user.pk)).decode()
+
+        titi = force_bytes(user.pk)
+        toto = urlsafe_base64_encode(force_bytes(user.pk))
+        uid = urlsafe_base64_encode(force_bytes(user.pk)) #?? .decode() #--?
+
         token = self.token_generator.make_token(user)
         use_https = self.request.is_secure()
 
@@ -93,7 +97,7 @@ class Activate(View):
 
 class LoginView(BaseLoginView):
     form_class = LoginForm
-    template_name = 'app1/index.html'
+    template_name = 'users/index.html'
 
 class LogoutView(FormView):
     form_class = LogoutForm
