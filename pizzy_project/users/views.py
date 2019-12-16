@@ -51,11 +51,7 @@ class SignUpView(SendMailMixin, CreateView):
         current_site = get_current_site(self.request)
         site_name = current_site.name
         domain = current_site.domain
-
-        titi = force_bytes(user.pk)
-        toto = urlsafe_base64_encode(force_bytes(user.pk))
-        uid = urlsafe_base64_encode(force_bytes(user.pk)) #?? .decode() #--?
-
+        uid = urlsafe_base64_encode(force_bytes(user.pk)) #.decode()
         token = self.token_generator.make_token(user)
         use_https = self.request.is_secure()
 
@@ -84,16 +80,48 @@ class Activate(View):
         try:
             uid = force_text(urlsafe_base64_decode(uidb64))
             user = User.objects.get(pk=uid)
+            print( 'TROUVE user =', user  )
         except(TypeError, ValueError, OverflowError, User.DoesNotExist):
             user = None
+
+        print('## token = ', token)
         if user is not None and account_activation_token.check_token(user, token):
+            print( "ACTIVE OK")
             user.is_active = True
             user.confirm = True
             user.confirmation_date = timezone.now()
             user.save()
             return render(request, 'users/activation.html')
         else:
+            print( "ACTIVE INVALID")
             return render(request, 'users/activation_link_invalid.html',)
+
+# class Activate(View):
+#     def get(self, request, uidb64, token):
+#         try:
+#             uid = force_text(urlsafe_base64_decode(uidb64))
+#             print( 'uid =', uid )
+#             print( 'User.objects.all() =', User.objects.all() )
+
+#             user = User.objects.get(pk=uid)
+#             print( 'TROUVE user =', user  )
+  
+#         except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+#             user = None
+#             print( 'èèèèèèèè user à NONE')
+        
+#         test = account_activation_token.check_token(user, token)
+#         print('## TEST = ', test)
+#         print('## token = ', token)
+
+#         if user is not None and account_activation_token.check_token(user, token):
+#             user.is_active = True
+#             user.confirm = True
+#             user.confirmation_date = timezone.now()
+#             user.save()
+#             return render(request, 'users/activation.html')
+#         else:
+#             return render(request, 'users/activation_link_invalid.html',)
 
 class LoginView(BaseLoginView):
     form_class = LoginForm

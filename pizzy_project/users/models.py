@@ -34,7 +34,7 @@ class User(AbstractBaseUser):
         return full_name.strip()
         
     def get_short_name(self):
-        return self.first_name
+        return self.first_name + '#'+self.pk
     
     def __str__(self):
         return self.email
@@ -79,6 +79,7 @@ class UserProfile(models.Model):
 
 
 def create_user_data(sender, instance, created, **kwargs):
+    print( "---------------------create_user_data ---------------- created = ", created)
     if created:
         UserProfile.objects.create(user=instance)
         PrivateData.objects.create(user=instance)
