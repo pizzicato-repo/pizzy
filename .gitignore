@@ -12,6 +12,6 @@ __pycache__/
 *.py[cod]
 
 # django migrations 
-**/migrations/**
-**/migrations
-**/migrations/__init__.py
+**/**/migrations/**
+**/**/migrations
+**/**//migrations/__init__.py
