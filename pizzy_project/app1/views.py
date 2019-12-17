@@ -9,7 +9,6 @@ def home(request):
 
 class ProfileView(DetailView):
     model = Teatcher
-
-    def get(request, id):
-        print( 'id  ', id)
+    template_name = "app1/toto.html"
+    def get(self, request):
         return render(request, self.template_name, {})

@@ -4,10 +4,12 @@ from users.models import User
 
 # Create your models here.
 
-class Teatcher(User):
-    isBefore = models.BooleanField(default=False)
+class Teatcher(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    isIndependant = models.BooleanField(default=False, verbose_name="independant")
 
-class Student(User):
+class Student(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     date_of_birth = models.DateField(null=True, verbose_name="date de naissance")
 
 #..........

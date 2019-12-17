@@ -21,7 +21,9 @@ class UserManager(BaseUserManager):
         user_obj.is_staff = is_staff
         user_obj.is_admin = is_admin
         user_obj.is_active = is_active
+        print( "before UserManager::create_user ")
         user_obj.save(using=self._db)
+        print( "after UserManager::create_user ")
         return user_obj
 
     def create_staffuser(self, email, username, first_name, last_name, password=None):
