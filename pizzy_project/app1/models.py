@@ -7,10 +7,14 @@ from users.models import User
 class Teatcher(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     isIndependant = models.BooleanField(default=False, verbose_name="independant")
+    def __str__(self):
+        return self.user.username
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     date_of_birth = models.DateField(null=True, verbose_name="date de naissance")
+    def __str__(self):
+        return self.user.username
 
 #..........
 

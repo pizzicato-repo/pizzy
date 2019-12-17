@@ -1,0 +1,24 @@
+#....................
+page 1792
+
+ Unfortunately, flaws were discovered in the code supporting this: it only works in
+limited circumstances, and produces errors that are very difficult to debug when it does not work.
+
+from django.utils.decorators import method_decorator
+
+login_required_m = method_decorator(login_required)
+class MyClass(object):
+    @login_required_m
+    def my_view(self, request):
+        pass
+
+-or-
+
+from django.utils.decorators import method_decorator
+
+class MyClass(object):
+    @method_decorator(login_required)
+    def my_view(self, request):
+    pass
+
+#....................

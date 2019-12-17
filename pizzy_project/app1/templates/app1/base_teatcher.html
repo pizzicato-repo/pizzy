@@ -24,7 +24,7 @@
     
     <header class="row">
             <a href="{% url 'users:index' %}"><img id="logo_pizzy" src="{% static 'img/logo_pizzy.jpg' %}" alt="PIZZY"></a>
-            <div id="titre_base">Pizzicato : le site des apprentis musiciens</div>
+            <div id="titre_base">Enseignants : Tableau de bord</div>
     </header>
 
     <div>
@@ -32,7 +32,7 @@
         <navbar class="row">
             <nav id="navbar" class="site-header sticky-top py-1 col-md-12">
                 <div id="filtre_url_navbar" class="container d-flex flex-column flex-md-row justify-content-between">
-                    <a href="{% url 'users:logout' %}" class="btn fas fa-sign-out-alt" id="logout" title="Déconnexion"></a>
+                    <a href="{% url 'users:logout' %}" class="btn fas fa-sign-out-alt" id="logout" title="Déconnexion">Déconnexion</a>
                 </div>
             </nav>
         </navbar>

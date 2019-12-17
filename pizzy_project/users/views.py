@@ -42,14 +42,11 @@ class SignUpView(SendMailMixin, CreateView):
     def form_valid(self, form):
         user = form.save()
         user.is_active = False
-        print( "# USER.save A 1 ")
         user.save()
-        print( "# USER.save A 2 ")
 
         user.private_data.phone_number = form.cleaned_data["phone_number"]
         user.private_data.save()    
         user.user_profile.save() 
-        print( "# USER.save B")   
 
         # Envoie email de confirmation
         current_site = get_current_site(self.request)
@@ -84,21 +81,16 @@ class Activate(View):
         try:
             uid = force_text(urlsafe_base64_decode(uidb64))
             user = User.objects.get(pk=uid)
-            print( 'TROUVE user =', user  )
         except(TypeError, ValueError, OverflowError, User.DoesNotExist):
             user = None
-            print( 'TROUVE KO'  )
 
         if user is not None and account_activation_token.check_token(user, token):
-            print( "ACTIVE OK")
             user.is_active = True
             user.confirm = True
             user.confirmation_date = timezone.now()
             user.save()
-            print( "USER CONFIRMED !!")
             return render(request, 'users/activation.html')
         else:
-            print( "CHECK_TOKEN INVALID")
             return render(request, 'users/activation_link_invalid.html',)
 
 class LoginView(BaseLoginView):

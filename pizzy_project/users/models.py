@@ -63,7 +63,7 @@ class UserProfile(models.Model):
     #                                     choices=( (True, "Stagiaire"),(False, "Employé") ))
     # car_owner       = models.BooleanField(default=False, verbose_name="Propriétaire d'un Véhicule",
     #                                     choices=( (True, "Oui"), (False, "Non")) )
-    # profile_image   = models.ImageField(blank=True, upload_to='avatars/', default='avatar_generique.jpg')
+    profile_image   = models.ImageField(blank=True, upload_to='avatars/', default='avatar_generique.jpg')
     # smoker          = models.BooleanField(default=False, verbose_name="Fumeur",
     #                                     choices=( (True, "Fumeur"), (False, 'Non Fumeur')))
     # talker          = models.BooleanField(default=False, verbose_name="Bavard",
@@ -80,7 +80,6 @@ class UserProfile(models.Model):
 
 
 def create_user_data(sender, instance, created, **kwargs):
-    print( "---------------------create_user_data ---------------- created = ", created)
     if created:
         UserProfile.objects.create(user=instance)
         PrivateData.objects.create(user=instance)
