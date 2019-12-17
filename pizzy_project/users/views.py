@@ -84,7 +84,6 @@ class Activate(View):
         except(TypeError, ValueError, OverflowError, User.DoesNotExist):
             user = None
 
-        print('## token = ', token)
         if user is not None and account_activation_token.check_token(user, token):
             print( "ACTIVE OK")
             user.is_active = True
@@ -96,36 +95,10 @@ class Activate(View):
             print( "ACTIVE INVALID")
             return render(request, 'users/activation_link_invalid.html',)
 
-# class Activate(View):
-#     def get(self, request, uidb64, token):
-#         try:
-#             uid = force_text(urlsafe_base64_decode(uidb64))
-#             print( 'uid =', uid )
-#             print( 'User.objects.all() =', User.objects.all() )
-
-#             user = User.objects.get(pk=uid)
-#             print( 'TROUVE user =', user  )
-  
-#         except(TypeError, ValueError, OverflowError, User.DoesNotExist):
-#             user = None
-#             print( 'èèèèèèèè user à NONE')
-        
-#         test = account_activation_token.check_token(user, token)
-#         print('## TEST = ', test)
-#         print('## token = ', token)
-
-#         if user is not None and account_activation_token.check_token(user, token):
-#             user.is_active = True
-#             user.confirm = True
-#             user.confirmation_date = timezone.now()
-#             user.save()
-#             return render(request, 'users/activation.html')
-#         else:
-#             return render(request, 'users/activation_link_invalid.html',)
-
 class LoginView(BaseLoginView):
     form_class = LoginForm
-    template_name = 'users/index.html'
+    template_name = 'users/index.html' 
+    redirect_field_name = 'roro'   
 
 class LogoutView(FormView):
     form_class = LogoutForm
