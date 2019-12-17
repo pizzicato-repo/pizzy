@@ -18,7 +18,7 @@ from django.utils import timezone
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import is_safe_url, urlsafe_base64_encode, urlsafe_base64_decode
 from django.views import View
-from django.views.generic import CreateView, FormView, TemplateView
+from django.views.generic import CreateView, FormView, TemplateView, RedirectView
 
 from .forms import LoginForm, SignupForm, LogoutForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm
 from .tokens import account_activation_token
