@@ -1,14 +1,26 @@
 {% extends 'app1/base_teatcher.html' %}
 
 
+{% block head %}
+{% endblock %}
+
 {% block section %}
 
-
 <div class="row">
-Tableau de bord de {{user.username }} ({{user.email}}) <br>
+    <p>
+        Tableau de bord de {{user.username }} ({{user.email}}) <br>
 
-<br><a href="{% url 'app1:create-lb' %}">Créer une LB</a>
+        <a href="{% url 'app1:create-lb' %}">Créer une LB</a>
+        
+        <br><br>
+        
+        Liste des LB <br>
     
+        {% for lb in lboxes %}
+        <a href="{{ lb.get_absolute_url }}">{{lb.libelle}}</a> <br>
+        {% endfor %}
+    
+    </p>
 </div> 
 
 
